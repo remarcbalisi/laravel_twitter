@@ -38,7 +38,7 @@ const Home = () => {
       </Sider>
       <Layout>
         <Header style={{color: 'white'}}>Header</Header>
-        <Content style={{height: '100vh'}}>
+        <Content style={{height: '100%'}}>
           <div style={{padding: '40px'}}>
             <Card title="Write new Post">
               <Form
@@ -66,7 +66,7 @@ const Home = () => {
                 globalPost.posts &&
                 (
                   globalPost.posts.map(post => (
-                    <Post post={post}>
+                    <Post key={post.id} post={post}>
                       <p>{post.body}</p>
                     </Post>
                   ))
