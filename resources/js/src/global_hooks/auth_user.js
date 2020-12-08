@@ -14,7 +14,11 @@ const actions = {
   },
   login: async (store, payload) => {
     const {data: {data}} = await API.post('login', payload)
-    console.log(data)
+    localStorage.setItem('bearer_token', "Bearer " + data.token);
+    store.setState({
+      ...store.state,
+      user: data.user
+    })
   }
 };
 
