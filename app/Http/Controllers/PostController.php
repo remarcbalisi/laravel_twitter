@@ -29,7 +29,11 @@ class PostController extends Controller
         $post = Post::create($request->except('post_id'));
         if(isset($request->post_id)){
             $post_url = config('app.url') . 'post/' . $request->post_id;
-            PostUrl::create(['post_id' => $post->id, 'url' => $post_url]);
+            PostUrl::create([
+                'post_id' => $post->id,
+                'from_post' => $request->post_id,
+                'url' => $post_url
+            ]);
         }
         return new PostResource($post);
     }

@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {
   Card,
   Form,
@@ -7,13 +7,17 @@ import {
   Layout,
   Row,
   Col,
-  Tooltip
+  Tooltip,
+  Modal
 } from "antd";
 import {CommentOutlined, HeartOutlined, RetweetOutlined, SendOutlined} from '@ant-design/icons';
 import useGlobalPost from "../global_hooks/post";
+import WriteNewPost from "./WriteNewPost";
+import Iframe from "react-iframe";
 
 const Post = ({post, enable_comment=true, ...props}) => {
   const [globalPost, globalPostActions] = useGlobalPost()
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const onFinish = async (values) => {
     values['post_id'] = post.id
@@ -25,17 +29,48 @@ const Post = ({post, enable_comment=true, ...props}) => {
 
   };
 
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
   return (
     <Card title={post.user.name} bordered={false} style={{marginTop: '10px'}} {...props}>
+
+      <Modal
+        title={`Re-post`}
+        visible={isModalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <WriteNewPost post_id={post.id} handleOk={() => handleOk()} />
+        <Iframe url={`${process.env.MIX_APP_URL}post/${post.id}`}
+          width="450px"
+          height="450px"
+          className="myClassname"
+          display="initial"
+          position="relative"/>
+      </Modal>
+
       <h2>{post.body}</h2>
 
       <div style={{marginTop: '50px'}}>
         <Row>
           <Col span={1}><HeartOutlined /></Col>
           <Col span={1}>
-            <Tooltip title="Re-post">
-              <RetweetOutlined style={{cursor: 'pointer'}} />
-            </Tooltip>
+            <div style={{display: 'flex', alignItems: 'center'}}>
+              <Tooltip title="Re-post">
+                <RetweetOutlined onClick={showModal} style={{cursor: 'pointer', marginRight: '6px'}} />
+              </Tooltip>
+              <p style={{marginBottom: '0px'}}>{post.re_posts.length}</p>
+            </div>
           </Col>
           <Col span={1}>
             <div style={{display: 'flex', alignItems: 'center'}}>

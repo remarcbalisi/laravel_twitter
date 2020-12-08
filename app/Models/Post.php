@@ -24,4 +24,9 @@ class Post extends Model
     {
         return $this->hasMany(PostUrl::class);
     }
+
+    public function rePosts()
+    {
+        return $this->hasMany(PostUrl::class, 'from_post');
+    }
 }

@@ -16,6 +16,7 @@ class CreatePostUrlsTable extends Migration
         Schema::create('post_urls', function (Blueprint $table) {
             $table->id();
             $table->foreignId('post_id')->constrained();
+            $table->foreignId('from_post')->constrained('posts');
             $table->string('url', 220);
             $table->timestamps();
         });

@@ -12,6 +12,8 @@
 ```
 APP_URL=http://laravel_twitter.test/
 
+MIX_APP_URL=http://laravel_twitter.test/
+
 MIX_BASE_URL=http://laravel_twitter.test/api/
 
 PASSPORT_PERSONAL_ACCESS_CLIENT_ID=

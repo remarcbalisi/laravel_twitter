@@ -20,6 +20,7 @@ class PostResource extends JsonResource
             'user' => new UserResource($this->user),
             'comments' => $this->comments()->with('post.user', 'user')->get(),
             'post_urls' => $this->postUrls,
+            're_posts' => $this->rePosts,
         ];
     }
 }
