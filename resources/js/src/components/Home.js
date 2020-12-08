@@ -9,6 +9,7 @@ import {
 const { Header, Footer, Sider, Content } = Layout;
 import SideMenu from "./SideMenu"
 import useGlobalPost from "../global_hooks/post";
+import Post from "./Post";
 
 const Home = () => {
   const [globalPost, globalPostActions] = useGlobalPost()
@@ -65,9 +66,9 @@ const Home = () => {
                 globalPost.posts &&
                 (
                   globalPost.posts.map(post => (
-                    <Card key={post.id} title={post.user.name} bordered={false} style={{marginTop: '10px'}}>
+                    <Post post={post}>
                       <p>{post.body}</p>
-                    </Card>
+                    </Post>
                   ))
                 )
               }
