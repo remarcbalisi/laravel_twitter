@@ -10,13 +10,15 @@ import {
 } from 'antd';
 const { Header, Footer, Sider, Content } = Layout;
 import useGlobalAuthUser from "../global_hooks/auth_user"
+import { useHistory } from "react-router-dom";
 
 const Login = () => {
   const [gau, gauAction] = useGlobalAuthUser()
+  const history = useHistory()
 
   const onFinish = async (values) => {
-    console.log(values)
     await gauAction.login(values)
+    history.push('/home')
   };
 
   const onFinishFailed = (errorInfo) => {

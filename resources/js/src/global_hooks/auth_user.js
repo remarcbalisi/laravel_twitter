@@ -8,6 +8,12 @@ const initialState = {
 };
 
 const actions = {
+  setState: (store, payload) => {
+    store.setState({
+      ...store.state,
+      payload
+    })
+  },
   checkAuth: async (store) => {
     const {data: {data}} = await API.get('auth/user')
     store.setState({ user: data })
