@@ -26,7 +26,7 @@ const Post = ({post, ...props}) => {
 
   return (
     <Card title={post.user.name} bordered={false} style={{marginTop: '10px'}} {...props}>
-      <p>{post.body}</p>
+      <h2>{post.body}</h2>
 
       <div style={{marginTop: '50px'}}>
         <div>

@@ -66,9 +66,7 @@ const Home = () => {
                 globalPost.posts &&
                 (
                   globalPost.posts.map(post => (
-                    <Post key={post.id} post={post}>
-                      <p>{post.body}</p>
-                    </Post>
+                    <Post key={post.id} post={post} />
                   ))
                 )
               }
