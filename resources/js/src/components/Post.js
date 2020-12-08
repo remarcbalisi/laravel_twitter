@@ -9,11 +9,15 @@ import {
   Col
 } from "antd";
 import {SendOutlined} from '@ant-design/icons';
+import useGlobalPost from "../global_hooks/post";
 
 const Post = ({post, ...props}) => {
+  const [globalPost, globalPostActions] = useGlobalPost()
 
   const onFinish = async (values) => {
-    console.log(values)
+    values['post_id'] = post.id
+    await globalPostActions.createComment(values)
+    await globalPostActions.getPosts()
   }
 
   const onFinishFailed = (errorInfo) => {
@@ -25,6 +29,20 @@ const Post = ({post, ...props}) => {
       <p>{post.body}</p>
 
       <div style={{marginTop: '50px'}}>
+        <div>
+          <h4>Comments</h4>
+          {
+            post.comments &&
+            (
+              post.comments.map(comment => (
+                <div key={comment.id} style={{paddingLeft: '10px'}}>
+                  <h5 style={{color: 'blue'}}>{comment.post.user.name}</h5>
+                  <p>{comment.content}</p>
+                </div>
+              ))
+            )
+          }
+        </div>
         <Form
           name="comment"
           onFinish={onFinish}

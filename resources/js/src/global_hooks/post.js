@@ -22,6 +22,9 @@ const actions = {
       ...store.state,
       posts: data
     })
+  },
+  createComment: async (store, payload) => {
+    const {data: {data}} = await API.post('user/comment', payload)
   }
 };
 
