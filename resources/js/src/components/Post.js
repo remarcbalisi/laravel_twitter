@@ -6,7 +6,8 @@ import {
   Button,
   Layout,
   Row,
-  Col
+  Col,
+  Tooltip
 } from "antd";
 import {CommentOutlined, HeartOutlined, RetweetOutlined, SendOutlined} from '@ant-design/icons';
 import useGlobalPost from "../global_hooks/post";
@@ -31,8 +32,17 @@ const Post = ({post, enable_comment=true, ...props}) => {
       <div style={{marginTop: '50px'}}>
         <Row>
           <Col span={1}><HeartOutlined /></Col>
-          <Col span={1}><RetweetOutlined /></Col>
-          <Col span={1}><CommentOutlined /></Col>
+          <Col span={1}>
+            <Tooltip title="Re-post">
+              <RetweetOutlined style={{cursor: 'pointer'}} />
+            </Tooltip>
+          </Col>
+          <Col span={1}>
+            <div style={{display: 'flex', alignItems: 'center'}}>
+              <CommentOutlined style={{marginRight: '6px'}} />
+              <p style={{marginBottom: '0px'}}>{post.comments.length}</p>
+            </div>
+          </Col>
         </Row>
 
 

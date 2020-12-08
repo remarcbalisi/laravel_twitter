@@ -8,8 +8,11 @@
 
 `php artisan migrate --seed`
 
-**Add this on your .env (note: replace url with the project url)**
-```MIX_BASE_URL=http://laravel_twitter.test/api/
+**Add this on your .env (note: replace url with the correct project url)**
+```
+APP_URL=http://laravel_twitter.test/
+
+MIX_BASE_URL=http://laravel_twitter.test/api/
 
 PASSPORT_PERSONAL_ACCESS_CLIENT_ID=
 
