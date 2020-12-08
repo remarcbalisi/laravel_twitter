@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -12,6 +13,7 @@ Route::name('user.')->prefix('user')->group(function () {
 
     Route::middleware(['auth:api', 'role:user'])->group(function () {
         Route::apiResource('user', UserController::class)->except('store');
+        Route::apiResource('post', PostController::class);
     });
 
 });
