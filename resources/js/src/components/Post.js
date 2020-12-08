@@ -61,6 +61,19 @@ const Post = ({post, enable_comment=true, ...props}) => {
 
       <h2>{post.body}</h2>
 
+      {
+        post.post_urls &&
+        (
+          post.post_urls.map(pu => (
+            <Iframe url={`${pu.url}`}
+              width="600px"
+              height="600px"
+              display="initial"
+              position="relative"/>
+          ))
+        )
+      }
+
       <div style={{marginTop: '50px'}}>
         <Row>
           <Col span={1}><HeartOutlined /></Col>
