@@ -7,23 +7,18 @@ import {
   Link
 } from "react-router-dom";
 import Home from "./components/Home";
-import Example from "./components/Example";
+import Login from "./components/Login";
 
 const App = () => {
   return (
     <Router>
       <div>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-        </ul>
-
-        <hr />
-
         <Switch>
           <Route exact path="/">
             <Home />
+          </Route>
+          <Route exact path="/login">
+            <Login />
           </Route>
         </Switch>
       </div>
