@@ -7,7 +7,7 @@ import {
   Card
 } from 'antd';
 const { Header, Footer, Sider, Content } = Layout;
-const { TextArea } = Input;
+import SideMenu from "./SideMenu"
 
 const Home = () => {
 
@@ -21,7 +21,11 @@ const Home = () => {
 
   return (
     <Layout>
-      <Sider style={{color: 'white'}}>Sider</Sider>
+
+      <Sider style={{backgroundColor: 'white'}}>
+        <SideMenu />
+      </Sider>
+
       <Layout>
         <Header style={{color: 'white'}}>Header</Header>
         <Content style={{height: '100vh'}}>
@@ -44,7 +48,6 @@ const Home = () => {
                   </Button>
                 </Form.Item>
               </Form>
-
             </Card>
           </div>
         </Content>
