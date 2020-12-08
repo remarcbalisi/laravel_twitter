@@ -9,11 +9,14 @@ import {
   Layout
 } from 'antd';
 const { Header, Footer, Sider, Content } = Layout;
+import useGlobalAuthUser from "../global_hooks/auth_user"
 
 const Login = () => {
+  const [gau, gauAction] = useGlobalAuthUser()
 
   const onFinish = async (values) => {
     console.log(values)
+    await gauAction.login(values)
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -22,7 +25,9 @@ const Login = () => {
 
   return (
     <Layout>
-      <Header>Laravel Twitter</Header>
+      <Header style={{display: "flex", justifyContent: "center"}}>
+        <h4 style={{color: "white"}}>Laravel Twitter</h4>
+      </Header>
       <Content>
         <Row justify="center" align="middle" style={{ paddingTop: "2%" }}>
           <Col span={12}>

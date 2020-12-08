@@ -12,8 +12,8 @@ const actions = {
     const {data: {data}} = await API.get('auth/user')
     store.setState({ user: data })
   },
-  login: async (store) => {
-    const {data: {data}} = await API.get('login')
+  login: async (store, payload) => {
+    const {data: {data}} = await API.post('login', payload)
     console.log(data)
   }
 };
