@@ -8,7 +8,7 @@ import {
   Row,
   Col
 } from "antd";
-import {SendOutlined} from '@ant-design/icons';
+import {CommentOutlined, HeartOutlined, RetweetOutlined, SendOutlined} from '@ant-design/icons';
 import useGlobalPost from "../global_hooks/post";
 
 const Post = ({post, enable_comment=true, ...props}) => {
@@ -29,6 +29,16 @@ const Post = ({post, enable_comment=true, ...props}) => {
       <h2>{post.body}</h2>
 
       <div style={{marginTop: '50px'}}>
+        <Row>
+          <Col span={1}><HeartOutlined /></Col>
+          <Col span={1}><RetweetOutlined /></Col>
+          <Col span={1}><CommentOutlined /></Col>
+        </Row>
+
+
+      </div>
+
+      <div style={{marginTop: '10px'}}>
         <div>
           <h4>Comments</h4>
           {
