@@ -25,6 +25,9 @@ const actions = {
       ...store.state,
       user: data.user
     })
+  },
+  register: async (store, payload) => {
+    const {data: {data}} = await API.post('register', payload)
   }
 };
 

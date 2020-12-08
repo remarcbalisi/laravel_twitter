@@ -11,6 +11,7 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import useGlobalAuthUser from "./global_hooks/auth_user";
 import PreviewPost from "./components/PreviewPost";
+import Register from "./components/Register";
 
 const App = () => {
   return (
@@ -18,8 +19,16 @@ const App = () => {
       <div>
         <Switch>
 
+          <Route exact path="/">
+            <Login />
+          </Route>
+
           <Route exact path="/login">
             <Login />
+          </Route>
+
+          <Route exact path="/register">
+            <Register />
           </Route>
 
           <Route exact path="/post/:id">

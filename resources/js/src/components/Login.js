@@ -28,7 +28,7 @@ const Login = () => {
   return (
     <Layout>
       <Header style={{display: "flex", justifyContent: "center"}}>
-        <h4 style={{color: "white"}}>Laravel Twitter</h4>
+        <h3 style={{color: "white"}}>Login</h3>
       </Header>
       <Content>
         <Row justify="center" align="middle" style={{ paddingTop: "2%" }}>

@@ -12,7 +12,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        return PostResource::collection(Post::paginate());
+        return PostResource::collection(Post::latest()->paginate());
     }
 
     public function show(Post $post)

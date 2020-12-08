@@ -13,7 +13,11 @@ class UserController extends Controller
 {
     public function store(UserStoreRequest $request)
     {
+        $request->merge([
+            'password' => Hash::make($request->password),
+        ]);
         $user = User::create($request->all());
+        $user->assignRole(Role::where('name', 'user')->first());
         return new UserResource($user);
     }
 

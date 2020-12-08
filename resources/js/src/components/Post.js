@@ -36,7 +36,7 @@ const Post = ({post, enable_comment=true, ...props}) => {
             (
               post.comments.map(comment => (
                 <div key={comment.id} style={{paddingLeft: '10px'}}>
-                  <h5 style={{color: 'blue'}}>{comment.post.user.name}</h5>
+                  <h5 style={{color: 'blue'}}>{comment.user.name}</h5>
                   <p>{comment.content}</p>
                 </div>
               ))
