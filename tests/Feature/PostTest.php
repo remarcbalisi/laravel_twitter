@@ -71,4 +71,16 @@ class PostTest extends TestCase
             'data' => [['id']]
         ]);
     }
+
+    public function test_a_user_can_view_single_posts()
+    {
+        $this->withoutExceptionHandling();
+        Passport::actingAs(
+            $this->user
+        );
+        $response = $this->getJson(route('user.post.show', ['post' => $this->post]));
+        $response->assertJsonStructure([
+            'data' => ['id']
+        ]);
+    }
 }

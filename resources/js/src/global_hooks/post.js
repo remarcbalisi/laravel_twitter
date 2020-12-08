@@ -3,7 +3,8 @@ import globalHook from 'use-global-hook'
 import API from "../utils/api"
 
 const initialState = {
-  posts: []
+  posts: [],
+  post: null
 };
 
 const actions = {
@@ -25,6 +26,13 @@ const actions = {
   },
   createComment: async (store, payload) => {
     const {data: {data}} = await API.post('user/comment', payload)
+  },
+  showPost: async (store, post_id) => {
+    const {data: {data}} = await API.get(`user/post/${post_id}`)
+    store.setState({
+      ...store.state,
+      post: data
+    })
   }
 };
 

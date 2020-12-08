@@ -20,8 +20,10 @@ Route::name('user.')->prefix('user')->group(function () {
 
     Route::middleware(['auth:api', 'role:user'])->group(function () {
         Route::apiResource('user', UserController::class)->except('store');
-        Route::apiResource('post', PostController::class);
+        Route::apiResource('post', PostController::class)->except('show');
         Route::apiResource('comment', CommentController::class);
     });
+
+    Route::get('/post/{post}', [PostController::class, 'show'])->name('post.show');
 
 });

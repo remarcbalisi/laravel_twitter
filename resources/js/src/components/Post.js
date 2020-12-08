@@ -11,7 +11,7 @@ import {
 import {SendOutlined} from '@ant-design/icons';
 import useGlobalPost from "../global_hooks/post";
 
-const Post = ({post, ...props}) => {
+const Post = ({post, enable_comment=true, ...props}) => {
   const [globalPost, globalPostActions] = useGlobalPost()
 
   const onFinish = async (values) => {
@@ -43,27 +43,32 @@ const Post = ({post, ...props}) => {
             )
           }
         </div>
-        <Form
-          name="comment"
-          onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
-        >
-          <Form.Item
-            name="content"
-            rules={[{ required: true, message: 'Please input your comment!' }]}
-          >
-            <Row>
-              <Col span={20}>
-                <Input placeholder={'Comment...'} />
-              </Col>
-              <Col span={4}>
-                <Button icon={<SendOutlined />} type="primary" htmlType="submit">
+        {
+          enable_comment &&
+          (
+            <Form
+              name="comment"
+              onFinish={onFinish}
+              onFinishFailed={onFinishFailed}
+            >
+              <Form.Item
+                name="content"
+                rules={[{ required: true, message: 'Please input your comment!' }]}
+              >
+                <Row>
+                  <Col span={20}>
+                    <Input placeholder={'Comment...'} />
+                  </Col>
+                  <Col span={4}>
+                    <Button icon={<SendOutlined />} type="primary" htmlType="submit">
 
-                </Button>
-              </Col>
-            </Row>
-          </Form.Item>
-        </Form>
+                    </Button>
+                  </Col>
+                </Row>
+              </Form.Item>
+            </Form>
+          )
+        }
       </div>
     </Card>
   );

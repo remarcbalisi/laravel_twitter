@@ -10,6 +10,7 @@ import {
 import Home from "./components/Home";
 import Login from "./components/Login";
 import useGlobalAuthUser from "./global_hooks/auth_user";
+import PreviewPost from "./components/PreviewPost";
 
 const App = () => {
   return (
@@ -19,6 +20,10 @@ const App = () => {
 
           <Route exact path="/login">
             <Login />
+          </Route>
+
+          <Route exact path="/post/:id">
+            <PreviewPost />
           </Route>
 
           <PrivateRoute path="*" >

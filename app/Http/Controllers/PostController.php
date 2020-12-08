@@ -15,6 +15,11 @@ class PostController extends Controller
         return PostResource::collection(Post::paginate());
     }
 
+    public function show(Post $post)
+    {
+        return new PostResource($post);
+    }
+
     public function store(PostStoreRequest  $request)
     {
         $request->merge([
