@@ -83,4 +83,21 @@ class PostTest extends TestCase
             'data' => ['id']
         ]);
     }
+
+    public function test_a_user_can_re_post()
+    {
+        $this->withoutExceptionHandling();
+        Passport::actingAs(
+            $this->user
+        );
+        $payload = [
+            'body' => $this->faker->paragraph,
+            'post_id' => $this->post->id,
+        ];
+
+        $response = $this->postJson(route('user.post.store'), $payload);
+        $response->assertJsonStructure([
+            'data' => ['id', 'user' => ['id'], 'post_urls' => [['id']]]
+        ]);
+    }
 }

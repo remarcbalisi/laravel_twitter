@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PostStoreRequest;
 use App\Http\Resources\PostResource;
 use App\Models\Post;
+use App\Models\PostUrl;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,7 +26,11 @@ class PostController extends Controller
         $request->merge([
             'user_id' => Auth::user()->id,
         ]);
-        $post = Post::create($request->all());
+        $post = Post::create($request->except('post_id'));
+        if(isset($request->post_id)){
+            $post_url = config('app.url') . 'post/' . $request->post_id;
+            PostUrl::create(['post_id' => $post->id, 'url' => $post_url]);
+        }
         return new PostResource($post);
     }
 }
