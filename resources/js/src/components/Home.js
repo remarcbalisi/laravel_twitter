@@ -7,9 +7,11 @@ import SideMenu from "./SideMenu"
 import useGlobalPost from "../global_hooks/post";
 import Post from "./Post";
 import WriteNewPost from "./WriteNewPost";
+import useGlobalAuthUser from "../global_hooks/auth_user";
 
 const Home = () => {
   const [globalPost, globalPostActions] = useGlobalPost()
+  const [globalUser,] = useGlobalAuthUser()
 
   useEffect(() => {
     const getPosts = async () => {
@@ -24,7 +26,14 @@ const Home = () => {
         <SideMenu />
       </Sider>
       <Layout>
-        <Header style={{color: 'white'}}>Header</Header>
+        {
+          globalUser.user &&
+          (
+            <Header style={{backgroundColor: 'white'}}>
+              Hello {globalUser.user.name}
+            </Header>
+          )
+        }
         <Content style={{height: '100%'}}>
           <div style={{padding: '40px'}}>
 

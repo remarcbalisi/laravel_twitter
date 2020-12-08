@@ -65,8 +65,10 @@ const Post = ({post, enable_comment=true, ...props}) => {
         post.post_urls &&
         (
           post.post_urls.map(pu => (
-            <Iframe url={`${pu.url}`}
-              width="600px"
+            <Iframe
+              key={pu.id}
+              url={`${pu.url}`}
+              width="1200px"
               height="600px"
               display="initial"
               position="relative"/>

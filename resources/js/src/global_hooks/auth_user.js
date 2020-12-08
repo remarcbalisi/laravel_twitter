@@ -15,8 +15,11 @@ const actions = {
     })
   },
   checkAuth: async (store) => {
-    const {data: {data}} = await API.get('auth/user')
-    store.setState({ user: data })
+    const {data} = await API.get('auth/user')
+    store.setState({
+      ...store.state,
+      user: data
+    })
   },
   login: async (store, payload) => {
     const {data: {data}} = await API.post('login', payload)
