@@ -8,11 +8,15 @@ import {
 } from 'antd';
 const { Header, Footer, Sider, Content } = Layout;
 import SideMenu from "./SideMenu"
+import useGlobalPost from "../global_hooks/post";
 
 const Home = () => {
+  const [globalPost, globalPostActions] = useGlobalPost()
+  const [form] = Form.useForm();
 
-  const onFinish = (values) => {
-    console.log(values)
+  const onFinish = async (values) => {
+    await globalPostActions.createPost(values)
+    form.resetFields();
   }
 
   const onFinishFailed = (errorInfo) => {
@@ -21,11 +25,9 @@ const Home = () => {
 
   return (
     <Layout>
-
       <Sider style={{backgroundColor: 'white'}}>
         <SideMenu />
       </Sider>
-
       <Layout>
         <Header style={{color: 'white'}}>Header</Header>
         <Content style={{height: '100vh'}}>
@@ -35,10 +37,11 @@ const Home = () => {
                 name="post"
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}
+                form={form}
               >
                 <Form.Item
-                  name="content"
-                  rules={[{ required: true, message: 'Please input a content' }]}
+                  name="body"
+                  rules={[{ required: true, message: 'Please input what\'s happening' }]}
                 >
                   <Input.TextArea placeholder="What's happening?" rows={4} />
                 </Form.Item>
