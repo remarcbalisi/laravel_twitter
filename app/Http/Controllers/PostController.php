@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
+    public function index()
+    {
+        return PostResource::collection(Post::paginate());
+    }
+
     public function store(PostStoreRequest  $request)
     {
         $request->merge([

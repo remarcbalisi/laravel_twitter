@@ -3,7 +3,7 @@ import globalHook from 'use-global-hook'
 import API from "../utils/api"
 
 const initialState = {
-  post: null
+  posts: []
 };
 
 const actions = {
@@ -15,7 +15,13 @@ const actions = {
   },
   createPost: async (store, payload) => {
     const {data: {data}} = await API.post('user/post', payload);
-    console.log(data)
+  },
+  getPosts: async (store) => {
+    const {data: {data}} = await API.get('user/post')
+    store.setState({
+      ...store.state,
+      posts: data
+    })
   }
 };
 

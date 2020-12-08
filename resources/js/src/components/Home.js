@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {
   Form,
   Input,
@@ -13,6 +13,13 @@ import useGlobalPost from "../global_hooks/post";
 const Home = () => {
   const [globalPost, globalPostActions] = useGlobalPost()
   const [form] = Form.useForm();
+
+  useEffect(() => {
+    const getPosts = async () => {
+      await globalPostActions.getPosts()
+    }
+    getPosts()
+  }, [])
 
   const onFinish = async (values) => {
     await globalPostActions.createPost(values)
@@ -52,6 +59,20 @@ const Home = () => {
                 </Form.Item>
               </Form>
             </Card>
+
+            <div style={{marginTop: '50px'}}>
+              {
+                globalPost.posts &&
+                (
+                  globalPost.posts.map(post => (
+                    <Card key={post.id} title={post.user.name} bordered={false} style={{marginTop: '10px'}}>
+                      <p>{post.body}</p>
+                    </Card>
+                  ))
+                )
+              }
+            </div>
+
           </div>
         </Content>
         <Footer>Footer</Footer>
