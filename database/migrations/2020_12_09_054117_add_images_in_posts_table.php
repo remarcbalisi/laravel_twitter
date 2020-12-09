@@ -14,7 +14,7 @@ class AddImagesInPostsTable extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->json('images');
+            $table->json('images')->nullable();
         });
     }
 

@@ -25,6 +25,7 @@ class PostFactory extends Factory
         return [
             'body' => $this->faker->paragraph,
             'user_id' => self::factoryForModel(User::class),
+            'images' => '[]',
         ];
     }
 }

@@ -36,6 +36,7 @@ class PostTest extends TestCase
         );
         $payload = [
             'body' => $this->faker->paragraph,
+            'images' => '[]',
         ];
 
         $response = $this->postJson(route('user.post.store'), $payload);
@@ -93,6 +94,7 @@ class PostTest extends TestCase
         $payload = [
             'body' => mb_strimwidth($this->faker->paragraph, 0, 219),
             'post_id' => $this->post->id,
+            'images' => '[]',
         ];
 
         $response = $this->postJson(route('user.post.store'), $payload);
