@@ -14,6 +14,7 @@ import {CommentOutlined, HeartOutlined, RetweetOutlined, SendOutlined} from '@an
 import useGlobalPost from "../global_hooks/post";
 import WriteNewPost from "./WriteNewPost";
 import Iframe from "react-iframe";
+import Gallery from "./Gallery";
 
 const Post = ({post, enable_comment=true, ...props}) => {
   const [globalPost, globalPostActions] = useGlobalPost()
@@ -60,6 +61,8 @@ const Post = ({post, enable_comment=true, ...props}) => {
       </Modal>
 
       <h2>{post.body}</h2>
+
+      <Gallery images={JSON.parse(post.images)} />
 
       {
         post.post_urls &&

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import useGlobalPost from "../global_hooks/post";
 import {
   Form,
@@ -11,9 +11,11 @@ import UploadFile from "./UploadFile";
 const WriteNewPost = ({post_id=null, handleOk=null}) => {
   const [globalPost, globalPostActions] = useGlobalPost()
   const [form] = Form.useForm();
+  const [fileList, setFL] = useState([])
 
   const onFinish = async (values) => {
     values['post_id'] = post_id
+    values['images'] = JSON.stringify(fileList)
     await globalPostActions.createPost(values)
     await globalPostActions.getPosts()
     if(post_id != null) {
@@ -44,7 +46,7 @@ const WriteNewPost = ({post_id=null, handleOk=null}) => {
           <Button type="primary" htmlType="submit">
             Post
           </Button>
-          <UploadFile />
+          <UploadFile setFL={setFL} />
         </Form.Item>
       </Form>
     </Card>

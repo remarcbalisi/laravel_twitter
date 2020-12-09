@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { Upload, Button } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 
-const UploadFile = () => {
+const UploadFile = ({setFL}) => {
   const [fileList, setFileList] = useState([])
 
   const props = {
@@ -19,6 +19,7 @@ const UploadFile = () => {
           thumbUrl: fileUrl,
         }
         setFileList([fileProps])
+        setFL([fileProps])
       }
     },
     defaultFileList: fileList,
