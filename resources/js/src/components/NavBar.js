@@ -23,13 +23,18 @@ const NavBar = () => {
 
   return (
     <Menu onClick={handleClick} selectedKeys={[current]} mode="horizontal" style={rightStyle}>
-      <SubMenu
-        key="profile"
-        icon={<UserOutlined />}
-        title={`${gau.user.name}`}
-      >
-        <Menu.Item icon={<LogoutOutlined />} key="logout" onClick={logout}>Logout</Menu.Item>
-      </SubMenu>
+      {
+        gau.user &&
+        (
+          <SubMenu
+            key="profile"
+            icon={<UserOutlined />}
+            title={`${gau.user.name}`}
+          >
+            <Menu.Item icon={<LogoutOutlined />} key="logout" onClick={logout}>Logout</Menu.Item>
+          </SubMenu>
+        )
+      }
     </Menu>
   );
 }

@@ -1,13 +1,36 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Menu } from 'antd';
 import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
 const { SubMenu } = Menu;
+import { useHistory, useLocation } from "react-router-dom";
+import useGlobalAuthUser from "../global_hooks/auth_user";
+
 
 const SideMenu = () => {
+  const history = useHistory()
+  const location = useLocation();
+  const [current, setCurrent] = useState('home')
+  const [globalUser, globalUserActions] = useGlobalAuthUser()
+
+  useEffect(() => {
+    if(location.pathname.includes('user')){
+      setCurrent('profile');
+    }
+  }, [])
 
   const handleClick = e => {
-    console.log('click ', e);
+    setCurrent(e.key);
   };
+
+  const profile = (e) => {
+    history.push(`/user/${globalUser.user.id}`)
+    setCurrent(e.key);
+  }
+
+  const home = (e) => {
+    history.push('/home')
+    setCurrent(e.key);
+  }
 
   return (
     <>
@@ -21,12 +44,11 @@ const SideMenu = () => {
       </div>
       <Menu
         onClick={handleClick}
-        defaultSelectedKeys={['1']}
-        defaultOpenKeys={['sub1']}
+        selectedKeys={[current]}
         mode="inline"
       >
-        <Menu.Item key="1">Home</Menu.Item>
-        <Menu.Item key="2">Profile</Menu.Item>
+        <Menu.Item key="home" onClick={home}>Home</Menu.Item>
+        <Menu.Item key="profile" onClick={profile}>Profile</Menu.Item>
       </Menu>
     </>
   );

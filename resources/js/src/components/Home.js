@@ -27,17 +27,11 @@ const Home = () => {
         <SideMenu />
       </Sider>
       <Layout>
-        {
-          globalUser.user &&
-          (
-            <Header style={{backgroundColor: 'white'}}>
-              <div style={{backgroundColor: 'black'}}>
-                <NavBar />
-              </div>
-              {/*Hello {globalUser.user.name}*/}
-            </Header>
-          )
-        }
+        <Header style={{backgroundColor: 'white'}}>
+          <div style={{backgroundColor: 'black'}}>
+            <NavBar />
+          </div>
+        </Header>
         <Content style={{height: '100%'}}>
           <div style={{padding: '40px'}}>
 

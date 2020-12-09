@@ -12,6 +12,7 @@ import Login from "./components/Login";
 import useGlobalAuthUser from "./global_hooks/auth_user";
 import PreviewPost from "./components/PreviewPost";
 import Register from "./components/Register";
+import Profile from "./components/Profile";
 
 const App = () => {
   return (
@@ -39,6 +40,9 @@ const App = () => {
             <Switch>
               <Route path={`/home`}>
                 <Home />
+              </Route>
+              <Route path="/user/:id">
+                <Profile />
               </Route>
             </Switch>
           </PrivateRoute>

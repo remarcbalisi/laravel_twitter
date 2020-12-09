@@ -4,7 +4,8 @@ import API from "../utils/api"
 
 const initialState = {
   user: null,
-  users: []
+  users: [],
+  viewUser: null
 };
 
 const actions = {
@@ -38,6 +39,13 @@ const actions = {
       ...store.state,
       user: null,
       users: []
+    })
+  },
+  getUser: async (store, user_id) => {
+    const {data: {data}} = await API.get(`user/user/${user_id}`)
+    store.setState({
+      ...store.state,
+      viewUser: data,
     })
   },
 };
