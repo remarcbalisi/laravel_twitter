@@ -8,6 +8,7 @@ import useGlobalPost from "../global_hooks/post";
 import Post from "./Post";
 import WriteNewPost from "./WriteNewPost";
 import useGlobalAuthUser from "../global_hooks/auth_user";
+import NavBar from "./NavBar";
 
 const Home = () => {
   const [globalPost, globalPostActions] = useGlobalPost()
@@ -30,7 +31,10 @@ const Home = () => {
           globalUser.user &&
           (
             <Header style={{backgroundColor: 'white'}}>
-              Hello {globalUser.user.name}
+              <div style={{backgroundColor: 'black'}}>
+                <NavBar />
+              </div>
+              {/*Hello {globalUser.user.name}*/}
             </Header>
           )
         }

@@ -31,7 +31,15 @@ const actions = {
   },
   register: async (store, payload) => {
     const {data: {data}} = await API.post('register', payload)
-  }
+  },
+  logout: async (store) => {
+    localStorage.setItem('bearer_token', null);
+    store.setState({
+      ...store.state,
+      user: null,
+      users: []
+    })
+  },
 };
 
 const useGlobalAuthUser = globalHook(React, initialState, actions);
