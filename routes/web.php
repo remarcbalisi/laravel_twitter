@@ -19,8 +19,6 @@ use Illuminate\Support\Facades\Route;
 
 //Auth::routes();
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Route::get('{any}', function () {
     return view('welcome'); // or wherever your React app is bootstrapped.
 })->where('any', '.*');

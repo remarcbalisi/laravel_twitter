@@ -26,4 +26,6 @@ Route::name('user.')->prefix('user')->group(function () {
 
     Route::get('/post/{post}', [PostController::class, 'show'])->name('post.show');
 
+    Route::post('/file-upload',App\Http\Controllers\FileUploadController::class)->name('upload');
+
 });

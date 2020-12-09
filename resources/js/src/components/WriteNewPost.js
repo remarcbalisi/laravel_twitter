@@ -6,6 +6,7 @@ import {
   Button,
   Card
 } from 'antd';
+import UploadFile from "./UploadFile";
 
 const WriteNewPost = ({post_id=null, handleOk=null}) => {
   const [globalPost, globalPostActions] = useGlobalPost()
@@ -43,6 +44,7 @@ const WriteNewPost = ({post_id=null, handleOk=null}) => {
           <Button type="primary" htmlType="submit">
             Post
           </Button>
+          <UploadFile />
         </Form.Item>
       </Form>
     </Card>
