@@ -6,11 +6,12 @@ const { Header, Footer, Sider, Content } = Layout;
 import SideMenu from "./SideMenu"
 import NavBar from "./NavBar";
 import useGlobalAuthUser from "../global_hooks/auth_user";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 const Profile = () => {
   const [globalUser, globalUserActions] = useGlobalAuthUser()
-  const { id } = useParams();
+  const { id } = useParams()
+  const history = useHistory()
 
   useEffect(() => {
     const getUser = async () => {
@@ -18,6 +19,10 @@ const Profile = () => {
     }
     getUser()
   }, [])
+
+  const editUser = () => {
+    history.push(`/user/edit/${id}`)
+  }
 
   return (
     <Layout>
@@ -45,7 +50,7 @@ const Profile = () => {
                   }
                   actions={[
                     <SettingOutlined key="setting" />,
-                    <EditOutlined key="edit" />,
+                    globalUser.viewUser.id === globalUser.user.id ? <EditOutlined onClick={editUser} key="edit" /> : null,
                     <EllipsisOutlined key="ellipsis" />,
                   ]}
                 >

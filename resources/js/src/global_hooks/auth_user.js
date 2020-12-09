@@ -48,6 +48,13 @@ const actions = {
       viewUser: data,
     })
   },
+  updateUser: async (store, payload) => {
+    const {data: {data}} = await API.put(`user/user/${store.state.viewUser.id}`, payload)
+    store.setState({
+      ...store.state,
+      viewUser: data,
+    })
+  },
 };
 
 const useGlobalAuthUser = globalHook(React, initialState, actions);
