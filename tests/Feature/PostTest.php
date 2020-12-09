@@ -91,7 +91,7 @@ class PostTest extends TestCase
             $this->user
         );
         $payload = [
-            'body' => $this->faker->paragraph,
+            'body' => mb_strimwidth($this->faker->paragraph, 0, 219),
             'post_id' => $this->post->id,
         ];
 
